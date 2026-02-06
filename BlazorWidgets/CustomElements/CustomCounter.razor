@@ -1,0 +1,22 @@
+﻿<div style="border: 1px solid black; padding: 1rem;">
+<h1>@headerText</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn @buttonClass" @onclick="IncrementCount">Click me</button>
+</div>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    [Parameter]
+    public string headerText { get; set; } = "Counter";
+
+    [Parameter]
+    public string buttonClass { get; set; } = "btn-primary";
+}

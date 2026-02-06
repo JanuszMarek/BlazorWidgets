@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/MVC apps/">
+    <Project Path="Blue/Blue.csproj" Id="14ced69b-9ca7-4a91-b4e6-ecba25c3df5f" />
+    <Project Path="Green/Green.csproj" Id="272fbb76-8cbc-40ca-9ff7-786e52643cdb" />
+    <Project Path="Red/Red.csproj" />
+  </Folder>
+  <Project Path="BlazorWidgets.Server/BlazorWidgets.Server.csproj" />
+  <Project Path="BlazorWidgets/BlazorWidgets.csproj" Id="f9d7ae21-d37d-4682-bc31-6b9f9d2abacc" />
+</Solution>
