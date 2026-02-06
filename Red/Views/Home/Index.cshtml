@@ -10,4 +10,10 @@
 <hr />
 
 <h4>Widgets:</h4>
-<custom-counter header-Text="Red Counter" button-Class="btn-danger"></custom-counter>
+<custom-counter header-Text="Red Counter" button-Class="btn-danger" js-On-Click="onClick"></custom-counter>
+
+<script>
+    function onClick(counter) {
+        console.log("Counter clicked! Current count: " + counter);
+    }
+</script>

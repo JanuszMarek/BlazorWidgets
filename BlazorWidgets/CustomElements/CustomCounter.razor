@@ -1,17 +1,30 @@
-﻿<div style="border: 1px solid black; padding: 1rem;">
-<h1>@headerText</h1>
+﻿@using System.Threading.Tasks
+@inject IJSRuntime JSRuntime
 
-<p role="status">Current count: @currentCount</p>
+<div style="border: 1px solid black; padding: 1rem;">
 
-<button class="btn @buttonClass" @onclick="IncrementCount">Click me</button>
+    <h1>@headerText</h1>
+
+    <p role="status">Current count: @currentCount</p>
+
+    <button class="btn @buttonClass" @onclick="IncrementCount">Click me</button>
+
+    <input id="currentCount" type="hidden" value="@currentCount" />
 </div>
 
 @code {
     private int currentCount = 0;
 
-    private void IncrementCount()
+    private async Task IncrementCount()
     {
         currentCount++;
+        // await click.InvokeAsync();
+        
+        // Call JavaScript function
+        if (!string.IsNullOrEmpty(jsOnClick))
+        {
+            await JSRuntime.InvokeVoidAsync(jsOnClick, currentCount);
+        }
     }
 
     [Parameter]
@@ -19,4 +32,7 @@
 
     [Parameter]
     public string buttonClass { get; set; } = "btn-primary";
+
+    [Parameter]
+    public string jsOnClick { get; set; }
 }
