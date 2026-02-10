@@ -1,0 +1,74 @@
+﻿@using System.Threading.Tasks
+@using Microsoft.JSInterop
+@inject IJSRuntime JSRuntime
+@implements IAsyncDisposable
+
+<div style="border: 1px solid black; padding: 1rem;">
+
+    <h1>@headerText</h1>
+
+    <p role="status">Current count: @Counter</p>
+
+    <button class="btn @buttonClass" @onclick="IncrementCount">Click me</button>
+
+    <input id="Counter" type="hidden" value="@Counter" />
+</div>
+
+@code {
+    private IJSObjectReference? module;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            try
+            {
+                // Get the baseUrl from the global window object
+                var baseUrl = await JSRuntime.InvokeAsync<string>("eval", "window.blazorWidgetsBaseUrl");
+                
+                if (string.IsNullOrEmpty(baseUrl))
+                {    
+                    return;
+                }
+
+                // Use full URL to load the module
+                var moduleUrl = $"{baseUrl}/js/CustomElements/CustomCounter.js";
+                module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", moduleUrl);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading CustomCounter module: {ex.Message}");
+            }
+        }
+    }
+
+    private async Task IncrementCount()
+    {
+        Counter++;
+        // Call JavaScript function
+        if (!string.IsNullOrEmpty(jsOnClick))
+        {
+            await JSRuntime.InvokeVoidAsync(jsOnClick, Counter);
+        }
+    }
+
+    [Parameter]
+    public int Counter { get; set; } = 0;
+
+    [Parameter]
+    public string headerText { get; set; } = "Counter";
+
+    [Parameter]
+    public string buttonClass { get; set; } = "btn-primary";
+
+    [Parameter]
+    public string jsOnClick { get; set; }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (module != null)
+        {
+            await module.DisposeAsync();
+        }
+    }
+}

@@ -1,0 +1,28 @@
+﻿@page "/"
+
+<PageTitle>Orange</PageTitle>
+
+<h1>Orange!</h1>
+
+Welcome to your new app.
+
+
+<hr />
+
+<h4>Widgets:</h4>
+
+<WidgetComponents.CustomElements.CustomCounter headerText="Orange Counter" buttonClass="btn-warning"></WidgetComponents.CustomElements.CustomCounter>
+
+<div>
+    Another counter: @currentCount
+</div>
+<button class="btn btn-primary" @onclick="@DoCounter">Local counter</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void DoCounter()
+    {
+        currentCount++;
+    }
+}

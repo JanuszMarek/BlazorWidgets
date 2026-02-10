@@ -1,7 +1,7 @@
 ﻿(function () {
     // Get baseUrl from script tag data attribute or fallback to default
     var currentScript = document.currentScript || document.querySelector('script[src*="widgets.js"]');
-	var baseUrl = currentScript?.getAttribute('data-baseurl') || 'http://localhost:5238';
+	var baseUrl = currentScript?.getAttribute('data-baseurl') || 'http://localhost:5166';
 
     // Expose baseUrl globally for Blazor components
     window.blazorWidgetsBaseUrl = baseUrl;
@@ -9,6 +9,7 @@
 	proxy_widget_app();
     
     widgets_loadScript('_framework/blazor.webassembly.js', runBlazor);
+	//widgets_loadScript('_content/Microsoft.AspNetCore.Components.CustomElements/Microsoft.AspNetCore.Components.CustomElements.lib.module.js');
 
 	function proxy_widget_app() {
 		if (!document.querySelector('script[type="importmap"]')) {

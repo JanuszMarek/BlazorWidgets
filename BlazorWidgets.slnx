@@ -2,8 +2,11 @@
   <Folder Name="/MVC apps/">
     <Project Path="Blue/Blue.csproj" Id="14ced69b-9ca7-4a91-b4e6-ecba25c3df5f" />
     <Project Path="Green/Green.csproj" Id="272fbb76-8cbc-40ca-9ff7-786e52643cdb" />
+    <Project Path="Orange/Orange.csproj" Id="e0b97a44-9163-4bd8-97ee-ad0a9cd8eaf3" />
+    <Project Path="Purple/Purple.csproj" Id="928a693e-9131-4408-847b-b34172005dd3" />
     <Project Path="Red/Red.csproj" />
   </Folder>
   <Project Path="BlazorWidgets.Server/BlazorWidgets.Server.csproj" />
   <Project Path="BlazorWidgets/BlazorWidgets.csproj" Id="f9d7ae21-d37d-4682-bc31-6b9f9d2abacc" />
+  <Project Path="WidgetComponents/WidgetComponents.csproj" Id="0cdcd7c6-7939-4bba-97b9-72ac25f57a35" />
 </Solution>

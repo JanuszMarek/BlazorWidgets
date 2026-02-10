@@ -17,3 +17,11 @@
         console.log("Counter clicked! Current count: " + counter);
     }
 </script>
+
+<script type="module">
+    import { getCounterValue, onCounterClick } from 'http://localhost:5238/js/CustomElements/counter.js';
+
+    // Now you can use these functions
+    window.getCounterValue = getCounterValue;
+    window.onCounterClick = onCounterClick;
+</script>
