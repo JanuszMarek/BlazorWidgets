@@ -46,7 +46,10 @@
                 return url;
             }
         }).then(() => {
-            console.log('Blazor WebAssembly started successfully - Custom elements are ready');  
+			console.log('Blazor WebAssembly started successfully - Custom elements are ready');  
+
+			const evt = new CustomEvent('widgets.started', { detail: '' });
+			window.dispatchEvent(evt);
         }).catch((error) => {
             console.error('Blazor WebAssembly startup error:', error);
         });

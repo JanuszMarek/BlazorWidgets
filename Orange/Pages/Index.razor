@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject IJSRuntime JS
 
 <PageTitle>Orange</PageTitle>
 
@@ -10,19 +11,30 @@ Welcome to your new app.
 <hr />
 
 <h4>Widgets:</h4>
-
-<WidgetComponents.CustomElements.CustomCounter headerText="Orange Counter" buttonClass="btn-warning"></WidgetComponents.CustomElements.CustomCounter>
+<custom-counter header-Text="Web Component" js-On-Click="log"></custom-counter>
+@* <WidgetComponents.CustomElements.CustomCounter headerText="Orange Counter Reference" buttonClass="btn-warning"></WidgetComponents.CustomElements.CustomCounter> *@
 
 <div>
     Another counter: @currentCount
 </div>
 <button class="btn btn-primary" @onclick="@DoCounter">Local counter</button>
 
+<div>
+    web component counter: @webComponentCounter
+</div>
+<button class="btn btn-primary" @onclick="@DoReadWebComponentCounter">Read web component counter</button>
+
 @code {
     private int currentCount = 0;
+    private int webComponentCounter = 0;
 
     private void DoCounter()
     {
         currentCount++;
+    }
+
+    private async Task DoReadWebComponentCounter()
+    {
+        webComponentCounter = await JS.InvokeAsync<int>("CustomCounter.value");
     }
 }
